@@ -1,9 +1,9 @@
 <template>
-  <h1 class="py-8 text-3xl font-bold max-w-screen-sm mx-auto">Home</h1>
+  <h1 class="py-8 text-xl font-semibold max-w-screen-sm mx-auto">Home</h1>
   <div class="p-4">
     <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
       <div
-        class="flex items-start space-x-2"
+        class="flex items-start group space-x-2"
         v-for="(item, i) of list"
         :key="i"
       >
@@ -31,7 +31,7 @@
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="1.5"
+            stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
             class="feather feather-check-square"
@@ -43,11 +43,30 @@
           </svg>
         </button>
         <span
-          class="font-medium"
+          class="flex-grow font-medium"
           :class="item.checked ? 'opacity-50 line-through' : ''"
         >
           {{ item.name }}
         </span>
+        <div class="p-0.5 opacity-30 group-hover:opacity-70">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-maximize-2"
+          >
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </div>
       </div>
       <input
         type="text"
