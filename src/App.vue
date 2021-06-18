@@ -1,7 +1,7 @@
 <template>
   <h1 class="py-8 text-3xl font-bold max-w-screen-sm mx-auto">Home</h1>
   <div class="p-4">
-    <div class="relative p-4 bg-white max-w-2xl mx-auto">
+    <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
       <div
         class="flex items-start space-x-2"
         v-for="(item, i) of list"
@@ -51,7 +51,7 @@
       </div>
       <input
         type="text"
-        class="sticky bottom-0 p-4 px-8 border mt-4 w-full"
+        class="sticky bottom-0 p-4 px-8 border w-full"
         placeholder="Enden?"
         @keyup.enter="addEntry"
         v-model="entry"
