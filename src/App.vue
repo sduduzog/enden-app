@@ -1,8 +1,13 @@
 <template>
   <div class="p-4" v-if="signedIn">
-    <h1 class="p-4 py-8 text-xl font-semibold max-w-screen-sm mx-auto">
-      Enden?
-    </h1>
+    <div class="flex justify-between items-center max-w-screen-sm mx-auto">
+      <h1 class="p-4 py-8 text-xl font-semibold">Enden?</h1>
+      <nav>
+        <button class="hover:bg-gray-100 p-2 px-4 rounded-md" @click="signOut">
+          Sign out
+        </button>
+      </nav>
+    </div>
     <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
       <div
         class="flex items-start group space-x-2"
@@ -133,18 +138,12 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-function useSupabase() {
+function useSupabaseAuth(supabase: SupabaseClient) {
   const signedIn = ref(false);
-  const options = {};
-  const supabase = createClient(
-    'https://glcenwzasztexldnfmud.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNDAzMzE5MCwiZXhwIjoxOTM5NjA5MTkwfQ.Pfzgv4VIMs2_Wm5okKXzsgIbGJ4ROXtPDiecpHmnOUw',
-    options
-  );
 
-  supabase.auth.onAuthStateChange((event, session) => {
+  supabase.auth.onAuthStateChange((_, session) => {
     signedIn.value = session !== null;
   });
   async function signInViaTwitter() {
@@ -167,8 +166,29 @@ function useSupabase() {
 export default defineComponent({
   name: 'App',
   setup() {
+    const options = {};
     const list = ref<Array<{ checked: boolean; name: string }>>([]);
     const entry = ref<string>();
+    const supabase = createClient(
+      'https://glcenwzasztexldnfmud.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNDAzMzE5MCwiZXhwIjoxOTM5NjA5MTkwfQ.Pfzgv4VIMs2_Wm5okKXzsgIbGJ4ROXtPDiecpHmnOUw',
+      options
+    );
+
+    supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_IN') {
+        fetchData();
+      }
+    });
+
+    async function fetchData() {
+      const { data: tasks, error } = await supabase.from('tasks').select('*');
+      if (error) {
+        console.error(error);
+        return;
+      }
+      console.log(tasks);
+    }
 
     function addEntry() {
       if (!entry.value) {
@@ -181,7 +201,7 @@ export default defineComponent({
       entry.value = undefined;
     }
 
-    return { list, entry, addEntry, ...useSupabase() };
+    return { list, entry, addEntry, ...useSupabaseAuth(supabase) };
   },
 });
 </script>
