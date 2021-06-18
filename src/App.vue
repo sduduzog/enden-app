@@ -9,6 +9,7 @@
       </nav>
     </div>
     <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
+      <to-do v-for="(item, i) of tasks" :item="item" :key="i" />
       <div
         class="flex items-start group space-x-2"
         v-for="(item, i) of list"
@@ -139,6 +140,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import ToDo from './components/to-do.vue';
 
 function useSupabaseAuth(supabase: SupabaseClient) {
   const signedIn = ref(false);
@@ -165,9 +167,11 @@ function useSupabaseAuth(supabase: SupabaseClient) {
 
 export default defineComponent({
   name: 'App',
+  components: { ToDo },
   setup() {
     const options = {};
     const list = ref<Array<{ checked: boolean; name: string }>>([]);
+    const tasks = ref<Array<any>>();
     const entry = ref<string>();
     const supabase = createClient(
       'https://glcenwzasztexldnfmud.supabase.co',
@@ -177,17 +181,17 @@ export default defineComponent({
 
     supabase.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_IN') {
-        fetchData();
+        fetchTasks();
       }
     });
 
-    async function fetchData() {
-      const { data: tasks, error } = await supabase.from('tasks').select('*');
-      if (error) {
+    async function fetchTasks() {
+      const { data, error } = await supabase.from('tasks').select('*');
+      if (error || !data) {
         console.error(error);
         return;
       }
-      console.log(tasks);
+      tasks.value = data;
     }
 
     function addEntry() {
@@ -201,7 +205,7 @@ export default defineComponent({
       entry.value = undefined;
     }
 
-    return { list, entry, addEntry, ...useSupabaseAuth(supabase) };
+    return { list, tasks, entry, addEntry, ...useSupabaseAuth(supabase) };
   },
 });
 </script>
