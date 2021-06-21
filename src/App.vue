@@ -9,7 +9,7 @@
       </nav>
     </div>
     <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
-      <to-do v-for="(item, i) of tasks" :item="item" :key="i" />
+      <!-- <to-do v-for="(item, i) of tasks" :item="item" :key="i" /> -->
       <div
         class="flex items-start group space-x-2"
         v-for="(item, i) of list"
