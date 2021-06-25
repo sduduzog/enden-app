@@ -109,6 +109,7 @@ export default defineComponent({
   components: { ToDoItem },
   setup() {
     const options = {};
+    const uid = ref();
     const list = ref<Array<{ checked: boolean; name: string }>>([]);
     const tasks = ref<Array<any>>();
     const entry = ref<string>();
@@ -118,10 +119,11 @@ export default defineComponent({
       options
     );
 
-    supabase.auth.onAuthStateChange((event) => {
+    supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
         fetchTasks();
       }
+      uid.value = session?.user?.id;
     });
 
     async function fetchTasks() {
@@ -133,15 +135,24 @@ export default defineComponent({
       tasks.value = data;
     }
 
-    function addEntry() {
+    async function addEntry() {
+      if (!uid.value) {
+        return;
+      }
       if (!entry.value) {
         return;
       }
-      list.value.push({
-        checked: false,
-        name: entry.value,
-      });
+      const { error } = await supabase.from('tasks').insert([
+        {
+          name: entry.value,
+          created_by: uid.value,
+        },
+      ]);
+      if (error) {
+        return;
+      }
       entry.value = undefined;
+      await fetchTasks();
     }
 
     return { list, tasks, entry, addEntry, ...useSupabaseAuth(supabase) };
