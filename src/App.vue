@@ -2,7 +2,10 @@
   <div class="p-4" v-if="signedIn">
     <div class="flex justify-between items-center max-w-screen-sm mx-auto">
       <h1 class="p-4 py-8 text-xl font-semibold">Home</h1>
-      <nav>
+      <nav class="flex space-x-1">
+        <button class="p-2 px-4" @click="clearCompleted">
+          Clear completed
+        </button>
         <button class="hover:bg-gray-100 p-2 px-4 rounded-md" @click="signOut">
           Sign out
         </button>
@@ -160,12 +163,25 @@ export default defineComponent({
       await fetchTasks();
     }
 
+    async function clearCompleted() {
+      const { error } = await supabase
+        .from('tasks')
+        .delete()
+        .eq('is_complete', true)
+        .eq('created_by', uid.value);
+      if (error) {
+        return;
+      }
+      fetchTasks();
+    }
+
     return {
       list,
       tasks,
       entry,
       addEntry,
       fetchTasks,
+      clearCompleted,
       ...useSupabaseAuth(supabase),
     };
   },
