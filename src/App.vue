@@ -9,12 +9,12 @@
       </nav>
     </div>
     <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
-      <to-do-item v-for="(item, i) of tasks" :item="item" :key="i" />
-      <div
-        class="flex items-start group space-x-2"
-        v-for="(item, i) of list"
-        :key="i"
-      ></div>
+      <to-do-item
+        v-for="item in tasks"
+        :item="item"
+        :key="item.id"
+        :on-refresh="fetchTasks"
+      />
       <input
         type="text"
         class="sticky bottom-0 p-4 px-8 w-full outline-none"
@@ -77,7 +77,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, provide, ref } from 'vue';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import ToDoItem from './components/to-do-item.vue';
 
@@ -119,6 +119,8 @@ export default defineComponent({
       options
     );
 
+    provide('supabase', supabase);
+
     supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
         fetchTasks();
@@ -127,7 +129,10 @@ export default defineComponent({
     });
 
     async function fetchTasks() {
-      const { data, error } = await supabase.from('tasks').select('*');
+      const { data, error } = await supabase
+        .from('tasks')
+        .select('*')
+        .order('id', { ascending: false });
       if (error || !data) {
         console.error(error);
         return;
@@ -155,7 +160,14 @@ export default defineComponent({
       await fetchTasks();
     }
 
-    return { list, tasks, entry, addEntry, ...useSupabaseAuth(supabase) };
+    return {
+      list,
+      tasks,
+      entry,
+      addEntry,
+      fetchTasks,
+      ...useSupabaseAuth(supabase),
+    };
   },
 });
 </script>
