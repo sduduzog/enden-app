@@ -18,7 +18,7 @@ import MainContent from '/@/components/main-content.vue';
 
 export default defineComponent({
   setup() {
-    return {};
+    return { addEntry: () => {}, entry: '' };
   },
   components: { MainContent },
 });
