@@ -81,12 +81,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, ref } from 'vue';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { defineComponent, onMounted, ref } from 'vue';
 import ToDoItem from './components/to-do-item.vue';
+import { useSupabase } from 'vue-supabase';
 
-function useSupabaseAuth(supabase: SupabaseClient) {
+function useSupabaseAuth() {
   const signedIn = ref(false);
+  const supabase = useSupabase();
+
+  onMounted(() => {
+    signedIn.value = supabase.auth.session() !== null;
+  });
 
   supabase.auth.onAuthStateChange((_, session) => {
     signedIn.value = session !== null;
@@ -112,18 +117,12 @@ export default defineComponent({
   name: 'App',
   components: { ToDoItem },
   setup() {
-    const options = {};
     const uid = ref();
     const list = ref<Array<{ checked: boolean; name: string }>>([]);
     const tasks = ref<Array<any>>();
     const entry = ref<string>();
-    const supabase = createClient(
-      'https://glcenwzasztexldnfmud.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNDAzMzE5MCwiZXhwIjoxOTM5NjA5MTkwfQ.Pfzgv4VIMs2_Wm5okKXzsgIbGJ4ROXtPDiecpHmnOUw',
-      options
-    );
 
-    provide('supabase', supabase);
+    const supabase = useSupabase();
 
     supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
@@ -183,7 +182,7 @@ export default defineComponent({
       addEntry,
       fetchTasks,
       clearCompleted,
-      ...useSupabaseAuth(supabase),
+      ...useSupabaseAuth(),
     };
   },
 });
