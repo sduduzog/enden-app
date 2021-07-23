@@ -1,5 +1,7 @@
 <template>
-  <dumb-centered-wrapper> {{ item }} </dumb-centered-wrapper>
+  <dumb-centered-wrapper class="py-2 w-full">
+    {{ item }}
+  </dumb-centered-wrapper>
 </template>
 <script setup lang="ts">
 import DumbCenteredWrapper from '/@/components/dumb-centered-wrapper.vue';

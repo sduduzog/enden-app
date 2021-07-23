@@ -1,5 +1,7 @@
 <template>
-  <router-view v-if="signedIn" />
+  <div v-if="signedIn" class="flex flex-col min-h-screen">
+    <router-view />
+  </div>
   <div class="p-4" v-else-if="false">
     <div class="flex justify-between items-center max-w-screen-sm mx-auto">
       <h1 class="p-4 py-8 text-xl font-semibold">Home</h1>
