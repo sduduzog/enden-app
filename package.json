@@ -9,7 +9,7 @@
     "@supabase/supabase-js": "^1.15.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",
-    "vue-supabase": "^2.0.0"
+    "vue-supabase": "git://github.com/sduduzog/vue-supabase#fix-typescript-definitions"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",
