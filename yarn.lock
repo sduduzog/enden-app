@@ -1470,9 +1470,10 @@ vue-router@^4.0.10:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.14"
 
-"vue-supabase@git://github.com/sduduzog/vue-supabase#use-vue-demi":
-  version "1.0.4"
-  resolved "git://github.com/sduduzog/vue-supabase#bfa9d56f41a358f2fde6f432d464ea80b23891e1"
+vue-supabase@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vue-supabase/-/vue-supabase-2.0.0.tgz#8dc159ce1783d6297ad262c62f89a4648cc2b445"
+  integrity sha512-7KjMN4jS4QMQKCNP9R4apUf82IFVuuehqiADq+GVbD2DgP/hE6UIkc3FXA2bmOsQ90zjIoJaBjg8fE0QsiAEWw==
   dependencies:
     "@supabase/supabase-js" "^1.4.2"
     vue-demi "^0.11.2"
