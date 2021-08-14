@@ -552,9 +552,9 @@ duplexer2@~0.1.4:
     readable-stream "^2.0.2"
 
 electron-to-chromium@^1.3.793:
-  version "1.3.805"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.805.tgz#a0873393a3b027ec60bdaf22a19c4946688cf941"
-  integrity sha512-uUJF59M6pNSRHQaXwdkaNB4BhSQ9lldRdG1qCjlrAFkynPGDc5wPoUcYEQQeQGmKyAWJPvGkYAWmtVrxWmDAkg==
+  version "1.3.806"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.806.tgz#21502100f11aead6c501d1cd7f2504f16c936642"
+  integrity sha512-AH/otJLAAecgyrYp0XK1DPiGVWcOgwPeJBOLeuFQ5l//vhQhwC9u6d+GijClqJAmsHG4XDue81ndSQPohUu0xA==
 
 emojis-list@^3.0.0:
   version "3.0.0"
@@ -1453,10 +1453,10 @@ vite@^2.3.7:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vue-demi@^0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.2.tgz#faa06da53887c493a695b997f4fcb4784a667990"
-  integrity sha512-J+X8Au6BhQdcej6LY4O986634hZLu55L0ewU2j8my7WIKlu8cK0dqmdUxqVHHMd/cMrKKZ9SywB/id6aLhwCtA==
+vue-demi@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.11.3.tgz#dd7495b92b495ecfa35675bf024b1358a7add150"
+  integrity sha512-DpM0TTMpclRZDV6AIacgg837zrim/C9Zn+2ztXBs9hsESJN9vC83ztjTe4KC4HgJuVle8YUjPp7HTwWtwOHfmg==
 
 vue-router@^4.0.10:
   version "4.0.11"
@@ -1465,12 +1465,12 @@ vue-router@^4.0.10:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.14"
 
-"vue-supabase@git://github.com/sduduzog/vue-supabase#introduce_build_step":
+"vue-supabase@git://github.com/sduduzog/vue-supabase#hook-pattern":
   version "2.0.0"
-  resolved "git://github.com/sduduzog/vue-supabase#bc07dc8add1a99b2b0372494ecae0d0aa7092a5d"
+  resolved "git://github.com/sduduzog/vue-supabase#63bb4ca45f1030f2d6b053d94860763b881ca553"
   dependencies:
     "@supabase/supabase-js" "^1.4.2"
-    vue-demi "^0.11.2"
+    vue-demi "^0.11.3"
 
 vue-tsc@^0.0.24:
   version "0.0.24"

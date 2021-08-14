@@ -9,7 +9,7 @@
     "@supabase/supabase-js": "^1.15.1",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",
-    "vue-supabase": "git://github.com/sduduzog/vue-supabase#introduce_build_step"
+    "vue-supabase": "git://github.com/sduduzog/vue-supabase#hook-pattern"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.3",
