@@ -12,13 +12,13 @@ const router = createRouter({
   history: createWebHistory(),
 });
 
-const app = createApp(App);
+console.log(import.meta.env.SUPABASE_URL);
 
+const app = createApp(App);
 app.use(router);
 app.use(VueSupabase, {
-  supabaseUrl: 'https://glcenwzasztexldnfmud.supabase.co',
-  supabaseKey:
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyNDAzMzE5MCwiZXhwIjoxOTM5NjA5MTkwfQ.Pfzgv4VIMs2_Wm5okKXzsgIbGJ4ROXtPDiecpHmnOUw',
+  supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
+  supabaseKey: import.meta.env.VITE_SUPABASE_KEY,
 });
 
 app.mount('#app');

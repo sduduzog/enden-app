@@ -5,7 +5,7 @@
       <input
         type="text"
         class="sticky bottom-0 p-4 px-8 w-full outline-none"
-        placeholder="Enden?"
+        placeholder="Endenis"
         @keyup.enter="addEntry"
         v-model="entry"
       />

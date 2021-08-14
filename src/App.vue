@@ -2,34 +2,6 @@
   <div v-if="signedIn" class="flex flex-col min-h-screen">
     <router-view />
   </div>
-  <div class="p-4" v-else-if="false">
-    <div class="flex justify-between items-center max-w-screen-sm mx-auto">
-      <h1 class="p-4 py-8 text-xl font-semibold">Home</h1>
-      <nav class="flex space-x-1">
-        <button class="p-2 px-4" @click="clearCompleted">
-          Clear completed
-        </button>
-        <button class="hover:bg-gray-100 p-2 px-4 rounded-md" @click="signOut">
-          Sign out
-        </button>
-      </nav>
-    </div>
-    <div class="relative p-4 bg-white max-w-2xl mx-auto space-y-2">
-      <to-do-item
-        v-for="item in tasks"
-        :item="item"
-        :key="item.id"
-        :on-refresh="fetchTasks"
-      />
-      <input
-        type="text"
-        class="sticky bottom-0 p-4 px-8 w-full outline-none"
-        placeholder="Enden?"
-        @keyup.enter="addEntry"
-        v-model="entry"
-      />
-    </div>
-  </div>
   <div
     v-else
     class="
