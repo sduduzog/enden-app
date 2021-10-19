@@ -1,16 +1,7 @@
 <template>
-  <main-content>
-    <div class="flex-1">items</div>
-    <div class="bg-blue-200">
-      <input
-        type="text"
-        class="sticky bottom-0 p-4 px-8 w-full outline-none"
-        placeholder="Endenis"
-        @keyup.enter="addEntry"
-        v-model="entry"
-      />
-    </div>
-  </main-content>
+  <div class="">
+    <div class="border">Cheese</div>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent } from '@vue/runtime-core';
