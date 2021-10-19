@@ -17,28 +17,44 @@
       class="
         w-full
         min-h-screen
-        md:min-h-full md:max-w-xl
+        md:min-h-full md:max-w-screen-md
         bg-white
         p-8
         pt-16
-        md:pt-28
+        md:pt-20
         space-y-8
-        md:space-y-16
+        md:space-y-8
       "
     >
+      <h1 class="text-3xl font-bold text-fuchsia-600 py-8">
+        enden? {{ session }}
+      </h1>
       <h1
         class="
           text-6xl
           font-black
           text-transparent
           bg-gradient-to-r bg-clip-text
+          py-2
         "
       >
         Manage tasks with your budget in mind.
       </h1>
       <button
         style="background-color: rgb(29, 161, 242)"
-        class="rounded-md text-white p-2 px-4 flex space-x-3 items-center"
+        class="
+          rounded-md
+          text-white
+          p-2
+          px-4
+          flex
+          space-x-3
+          items-center
+          hover:opacity-80
+        "
+        :class="{ 'grayscale opacity-40': loginDisabled }"
+        :disabled="loginDisabled"
+        @click="signInWithTwitter"
       >
         <twitter-logo class="w-6" />
         <span>Sign-In with Twitter</span>
@@ -48,10 +64,21 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useSupabaseAuth } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
+import { useSession } from '~/composables/session';
 
 export default defineComponent({
   components: { twitterLogo },
+  setup() {
+    const { session } = useSession();
+    const auth = useSupabaseAuth();
+    const loginDisabled = computed(() => typeof session.value === 'undefined');
+    function signInWithTwitter() {
+      console.log(session.value);
+    }
+    return { session, loginDisabled, signInWithTwitter };
+  },
 });
 </script>

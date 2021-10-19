@@ -8,7 +8,7 @@
   "dependencies": {
     "vue": "3.2.20",
     "vue-router": "4.0.12",
-    "vue-supabase": "2.2.1"
+    "vue-supabase": "git+https://github.com/sduduzog/vue-supabase#improve-composition"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "1.9.3",
