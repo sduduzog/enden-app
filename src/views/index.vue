@@ -64,7 +64,8 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
 import { useSupabaseAuth } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
 import { useSession } from '~/composables/session';
@@ -72,11 +73,15 @@ import { useSession } from '~/composables/session';
 export default defineComponent({
   components: { twitterLogo },
   setup() {
-    const { session } = useSession();
+    const router = useRouter();
     const auth = useSupabaseAuth();
+    const { session } = useSession();
     const loginDisabled = computed(() => typeof session.value === 'undefined');
+    watchEffect(() => {
+      router.push({ name: 'Home' });
+    });
     function signInWithTwitter() {
-      console.log(session.value);
+      auth.signIn({ provider: 'twitter' });
     }
     return { session, loginDisabled, signInWithTwitter };
   },
