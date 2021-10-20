@@ -1888,9 +1888,9 @@ vue-router@4.0.12:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.18"
 
-"vue-supabase@git+https://github.com/sduduzog/vue-supabase.git#improve-composition":
+"vue-supabase@git://github.com/sduduzog/vue-supabase#improve-composition":
   version "2.2.1"
-  resolved "git+https://github.com/sduduzog/vue-supabase.git#afe277db604113447484455da7f1f951e3d4f06a"
+  resolved "git://github.com/sduduzog/vue-supabase#afe277db604113447484455da7f1f951e3d4f06a"
   dependencies:
     "@supabase/supabase-js" "^1.24.0"
     vue-demi "^0.11.2"
