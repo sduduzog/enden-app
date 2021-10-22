@@ -14,6 +14,18 @@ export default defineComponent({
       type: String,
       default: undefined,
     },
+    onBlurred: {
+      type: Function,
+      default: undefined,
+    },
+    onFocussed: {
+      type: Function,
+      default: undefined,
+    },
+    focussed: {
+      type: Function,
+      default: undefined,
+    },
   },
   setup(props, { emit }) {
     const cTextarea = ref<HTMLTextAreaElement>();

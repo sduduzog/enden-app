@@ -31,10 +31,12 @@
             "
             :class="{ 'bg-gray-100': editing }">
             <textarea-autosize
+              @focus="editing = true"
+              @blur="editing = false"
               v-model="text"
-              class="flex-grow resize-none text-sm py-1 bg-fuchsia-300" />
+              class="flex-grow resize-none text-sm py-1 bg-transparent" />
             <button
-              class="rounded-md p-1 bg-gray-300 disabled:opacity-40"
+              class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
               :disabled="!editing">
               <x-icon class="h-5 text-white" />
             </button>
@@ -108,7 +110,14 @@ export default defineComponent({
       auth.signOut();
       router.push('/');
     }
-    return { text, signOut, editing };
+    function editorFocussed() {
+      console.log('editor focussed');
+      editing.value = true;
+    }
+    function rando() {
+      console.log('random function');
+    }
+    return { text, signOut, editing, editorFocussed, rando };
   },
 });
 </script>
