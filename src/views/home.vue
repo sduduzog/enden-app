@@ -29,6 +29,7 @@
               pl-11
               outline-none
               bg-transparent
+              hover:bg-gray-50
               focus:bg-gray-100
             "
             placeholder="enden?" />
