@@ -40,24 +40,31 @@
       >
         Manage tasks with your budget in mind.
       </h1>
+      <div v-if="loading">
+        <span class="inline-block w-44 p-2 px-4 text-center font-medium">
+          Loading...
+        </span>
+      </div>
       <button
+        v-else
         style="background-color: rgb(29, 161, 242)"
         class="
           rounded-md
-          text-white
+          overflow-hidden
+          hover:opacity-80
+          flex
+          items-center
           p-2
           px-4
-          flex
           space-x-3
-          items-center
-          hover:opacity-80
+          text-white
         "
         :class="{ 'grayscale opacity-40': loginDisabled }"
         :disabled="loginDisabled"
         @click="signInWithTwitter"
       >
         <twitter-logo class="w-6" />
-        <span>Sign-In with Twitter</span>
+        <span class="font-medium">Sign In with Twitter</span>
       </button>
     </div>
     <div class="hidden flex-grow">food</div>
@@ -75,15 +82,18 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const auth = useSupabaseAuth();
-    const { session } = useSession();
+    const { session, loading } = useSession();
     const loginDisabled = computed(() => typeof session.value === 'undefined');
     watchEffect(() => {
+      if (!session.value) {
+        return;
+      }
       router.push({ name: 'Home' });
     });
     function signInWithTwitter() {
       auth.signIn({ provider: 'twitter' });
     }
-    return { session, loginDisabled, signInWithTwitter };
+    return { session, loading, loginDisabled, signInWithTwitter };
   },
 });
 </script>
