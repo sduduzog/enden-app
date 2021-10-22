@@ -7,34 +7,37 @@
     </div>
     <div class="flex-grow flex justify-center">
       <!-- <div class="hidden lg:block w-full max-w-md"></div> -->
-      <div class="flex-shrink-0 w-full max-w-screen-sm space-y-2 relative">
-        <div
-          tabindex="0"
-          v-for="(item, i) in [1, 2]"
-          :key="i"
-          class="
-            p-1
-            text-sm
-            hover:bg-gray-50
-            focus:bg-gray-100 focus:shadow-sm
-            text-gray-700
-            rounded-md
-            outline-none
-            flex
-            items-start
-            space-x-1
-          ">
-          <button class="rounded-md p-1">
-            <check-icon v-if="i % 2 === 0" class="h-5" />
-            <minus-sm-icon v-else class="h-5" />
-          </button>
-          <span
-            :class="i % 2 === 0 ? '' : 'line-through'"
-            class="flex-grow py-1 font-medium">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          </span>
+      <div class="flex-shrink-0 w-full max-w-screen-sm flex flex-col">
+        <div class="flex-grow px-2 md:p-0 space-y-2">
+          <div
+            tabindex="0"
+            v-for="(item, i) in [1, 2, 3]"
+            :key="i"
+            class="
+              lg:mx-0
+              p-1
+              text-sm
+              hover:bg-gray-50
+              focus:bg-gray-100 focus:shadow-sm
+              text-gray-700
+              rounded-md
+              outline-none
+              flex
+              items-start
+              space-x-1
+            ">
+            <button class="rounded-md p-1">
+              <check-icon v-if="i % 2 === 0" class="h-5" />
+              <minus-sm-icon v-else class="h-5" />
+            </button>
+            <span
+              :class="i % 2 === 0 ? '' : 'line-through'"
+              class="flex-grow py-1 font-medium">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </span>
+          </div>
         </div>
-        <div class="absolute inset-x-0 bottom-0 p-4 bg-rose-100"></div>
+        <div class="bg-indigo-300 sticky bottom-0">Cheese</div>
       </div>
     </div>
   </div>
@@ -43,15 +46,10 @@
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
-import {
-  DotsHorizontalIcon,
-  DotsVerticalIcon,
-  CheckIcon,
-  MinusSmIcon,
-} from '@heroicons/vue/solid';
+import { CheckIcon, MinusSmIcon, LogoutIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { DotsHorizontalIcon, DotsVerticalIcon, CheckIcon, MinusSmIcon },
+  components: { CheckIcon, MinusSmIcon, LogoutIcon },
   setup() {
     const router = useRouter();
     const { auth } = useSupabase();
