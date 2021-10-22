@@ -24,9 +24,7 @@
         space-y-8
         md:space-y-8
       ">
-      <h1 class="text-3xl font-bold text-fuchsia-600 py-8">
-        enden? {{ session }}
-      </h1>
+      <h1 class="text-3xl font-black text-fuchsia-600 py-8">enden?</h1>
       <h1
         class="
           text-6xl

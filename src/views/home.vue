@@ -10,23 +10,27 @@
       <div class="flex-shrink-0 w-full max-w-screen-sm space-y-2 relative">
         <div
           tabindex="0"
-          v-for="(item, i) in [1]"
+          v-for="(item, i) in [1, 2]"
           :key="i"
           class="
-            p-2
-            px-4
+            p-1
             text-sm
+            bg-fuchsia-200
             hover:bg-gray-50
             focus:bg-gray-100 focus:shadow-sm
             text-gray-700
-            font-medium
             rounded-md
             outline-none
+            flex
+            items-start
+            space-x-1
           ">
-          <span
-            >Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            aliquam dicta ipsam?</span
-          >
+          <button class="bg-rose-300 rounded-md p-1">
+            <check-icon class="h-5" />
+          </button>
+          <span class="bg-indigo-400 flex-grow py-1 font-medium">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          </span>
         </div>
         <div class="absolute inset-x-0 bottom-0 p-4 bg-rose-100"></div>
       </div>
@@ -37,13 +41,18 @@
 import { defineComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
-import { DotsHorizontalIcon, DotsVerticalIcon } from '@heroicons/vue/solid';
+import {
+  DotsHorizontalIcon,
+  DotsVerticalIcon,
+  CheckIcon,
+  MinusSmIcon,
+} from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { DotsHorizontalIcon, DotsVerticalIcon },
+  components: { DotsHorizontalIcon, DotsVerticalIcon, CheckIcon, MinusSmIcon },
   setup() {
     const router = useRouter();
-    const auth = useSupabase().auth;
+    const { auth } = useSupabase();
     function signOut() {
       auth.signOut();
       router.push('/');

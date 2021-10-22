@@ -5,12 +5,10 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted } from 'vue';
 import { useSupabase } from 'vue-supabase';
-import ToDoItem from '~/components/to-do-item.vue';
 import { useSession } from './composables/session';
 
 export default defineComponent({
   name: 'App',
-  components: { ToDoItem },
   setup() {
     const { session } = useSession();
     const supabase = useSupabase();
