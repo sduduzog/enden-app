@@ -10,7 +10,7 @@
     "@heroicons/vue": "^1.0.4",
     "vue": "3.2.20",
     "vue-router": "4.0.12",
-    "vue-supabase": "git://github.com/sduduzog/vue-supabase#improve-composition"
+    "vue-supabase": "^2.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "1.9.3",

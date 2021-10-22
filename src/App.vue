@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted } from 'vue';
-import { useSupabaseAuth } from 'vue-supabase';
+import { useSupabase } from 'vue-supabase';
 import ToDoItem from '~/components/to-do-item.vue';
 import { useSession } from './composables/session';
 
@@ -13,7 +13,8 @@ export default defineComponent({
   components: { ToDoItem },
   setup() {
     const { session } = useSession();
-    const auth = useSupabaseAuth();
+    const supabase = useSupabase();
+    const auth = supabase.auth;
     const { data: subscription } = auth.onAuthStateChange((_, _session) => {
       session.value = _session;
     });

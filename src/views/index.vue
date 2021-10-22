@@ -11,8 +11,7 @@
       flex-row-reverse
       items-start
       md:items-stretch
-    "
-  >
+    ">
     <div
       class="
         w-full
@@ -24,8 +23,7 @@
         md:pt-20
         space-y-8
         md:space-y-8
-      "
-    >
+      ">
       <h1 class="text-3xl font-bold text-fuchsia-600 py-8">
         enden? {{ session }}
       </h1>
@@ -36,8 +34,7 @@
           text-transparent
           bg-gradient-to-r bg-clip-text
           py-2
-        "
-      >
+        ">
         Manage tasks with your budget in mind.
       </h1>
       <div v-if="loading">
@@ -61,8 +58,7 @@
         "
         :class="{ 'grayscale opacity-40': loginDisabled }"
         :disabled="loginDisabled"
-        @click="signInWithTwitter"
-      >
+        @click="signInWithTwitter">
         <twitter-logo class="w-6" />
         <span class="font-medium">Sign In with Twitter</span>
       </button>
@@ -73,7 +69,7 @@
 <script lang="ts">
 import { defineComponent, computed, watchEffect } from 'vue';
 import { useRouter } from 'vue-router';
-import { useSupabaseAuth } from 'vue-supabase';
+import { useSupabase } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
 import { useSession } from '~/composables/session';
 
@@ -81,7 +77,7 @@ export default defineComponent({
   components: { twitterLogo },
   setup() {
     const router = useRouter();
-    const auth = useSupabaseAuth();
+    const auth = useSupabase().auth;
     const { session, loading } = useSession();
     const loginDisabled = computed(() => typeof session.value === 'undefined');
     watchEffect(() => {
