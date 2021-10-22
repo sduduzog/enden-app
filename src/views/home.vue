@@ -19,20 +19,21 @@
       <!-- <div class="hidden lg:block w-full max-w-md"></div> -->
       <div class="flex-shrink-0 w-full max-w-screen-sm flex flex-col">
         <div class="flex-grow px-2 md:p-0 space-y-2">
-          <input
-            type="text"
-            class="
-              w-full
-              rounded-md
-              text-sm
-              p-3
-              pl-11
-              outline-none
-              bg-transparent
-              hover:bg-gray-50
-              focus:bg-gray-100
-            "
-            placeholder="enden?" />
+          <div
+            class="rounded-md w-full p-2 pl-11 flex"
+            :class="{ 'bg-gray-100': editing }">
+            <input
+              type="text"
+              placeholder="enden?"
+              @focus="editing = true"
+              @blur="editing = false"
+              class="flex-grow outline-none bg-transparent" />
+            <button
+              class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
+              :disabled="!editing">
+              <x-icon class="h-5 text-white" />
+            </button>
+          </div>
           <div
             tabindex="0"
             v-for="(item, i) in [1]"
@@ -61,7 +62,7 @@
                 focus:opacity-100
                 group-hover:opacity-100
                 focus:bg-gray-200 focus:ring-2 focus:ring-gray-300
-                active:bg-gray-400/75 active:text-white
+                active:bg-gray-300 active:text-white
               ">
               <check-icon v-if="i % 2 === 0" class="h-5" />
               <minus-sm-icon v-else class="h-5" />
@@ -79,21 +80,27 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
-import { CheckIcon, MinusSmIcon, LogoutIcon } from '@heroicons/vue/solid';
+import {
+  CheckIcon,
+  MinusSmIcon,
+  LogoutIcon,
+  XIcon,
+} from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { CheckIcon, MinusSmIcon, LogoutIcon },
+  components: { CheckIcon, MinusSmIcon, LogoutIcon, XIcon },
   setup() {
+    const editing = ref(false);
     const router = useRouter();
     const { auth } = useSupabase();
     function signOut() {
       auth.signOut();
       router.push('/');
     }
-    return { signOut };
+    return { signOut, editing };
   },
 });
 </script>
