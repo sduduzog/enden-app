@@ -10,7 +10,7 @@
       <div class="flex-shrink-0 w-full max-w-screen-sm space-y-2 relative">
         <div
           tabindex="0"
-          v-for="(item, i) in [1, 2, 3, 4, 5]"
+          v-for="(item, i) in [1]"
           :key="i"
           class="
             p-2
@@ -25,7 +25,7 @@
           ">
           <span
             >Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            aliquam dicta ipsam ullam?</span
+            aliquam dicta ipsam?</span
           >
         </div>
         <div class="absolute inset-x-0 bottom-0 p-4 bg-rose-100"></div>
