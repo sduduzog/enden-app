@@ -27,7 +27,7 @@
               placeholder="enden?"
               @focus="editing = true"
               @blur="editing = false"
-              class="flex-grow outline-none bg-transparent" />
+              class="flex-grow text-sm outline-none bg-transparent" />
             <button
               class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
               :disabled="!editing">
