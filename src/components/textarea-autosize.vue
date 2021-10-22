@@ -38,16 +38,11 @@ export default defineComponent({
         }
         rows.value = 1;
         await nextTick();
-        const paddingTopString = window
-          .getComputedStyle(cTextarea.value)
-          .paddingTop.replace('px', '');
         const lineHeightString = window
           .getComputedStyle(cTextarea.value)
           .lineHeight.replace('px', '');
         const lineHeight = Number(lineHeightString);
-        const paddingTop = Number(paddingTopString);
-        const offset = paddingTop * 2;
-        const scrollHeight = cTextarea.value.scrollHeight - offset;
+        const scrollHeight = cTextarea.value.scrollHeight;
         const newRows = scrollHeight / lineHeight;
         rows.value = newRows;
       }

@@ -30,11 +30,14 @@
               hover:bg-gray-50
             "
             :class="{ 'bg-gray-100': editing }">
-            <textarea-autosize
-              @focus="editing = true"
-              @blur="editing = false"
-              v-model="text"
-              class="flex-grow resize-none text-sm py-1 bg-transparent" />
+            <div class="pt-1 flex-grow">
+              <textarea-autosize
+                @focus="editing = true"
+                @blur="editing = false"
+                v-model="text"
+                placeholder="enden?"
+                class="flex-grow w-full resize-none text-sm bg-transparent" />
+            </div>
             <button
               class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
               :disabled="!editing">
@@ -76,7 +79,7 @@
             </button>
             <span
               :class="i % 2 === 0 ? '' : 'line-through '"
-              class="flex-grow py-1 font-medium text-sm bg-fuchsia-400">
+              class="flex-grow py-1 font-medium text-sm">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore
               ab fugiat nesciunt.
             </span>
