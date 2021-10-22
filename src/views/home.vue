@@ -15,7 +15,6 @@
           class="
             p-1
             text-sm
-            bg-fuchsia-200
             hover:bg-gray-50
             focus:bg-gray-100 focus:shadow-sm
             text-gray-700
@@ -25,10 +24,13 @@
             items-start
             space-x-1
           ">
-          <button class="bg-rose-300 rounded-md p-1">
-            <check-icon class="h-5" />
+          <button class="rounded-md p-1">
+            <check-icon v-if="i % 2 === 0" class="h-5" />
+            <minus-sm-icon v-else class="h-5" />
           </button>
-          <span class="bg-indigo-400 flex-grow py-1 font-medium">
+          <span
+            :class="i % 2 === 0 ? '' : 'line-through'"
+            class="flex-grow py-1 font-medium">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
           </span>
         </div>
