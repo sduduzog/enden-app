@@ -7,8 +7,22 @@
     </div>
     <div class="flex-grow flex justify-center">
       <!-- <div class="hidden lg:block w-full max-w-md"></div> -->
-      <div class="flex-shrink-0 w-full max-w-screen-sm space-y-1 relative">
-        <div class="p-2 px-3 bg-gray-300 rounded-md">
+      <div class="flex-shrink-0 w-full max-w-screen-sm space-y-2 relative">
+        <div
+          tabindex="0"
+          v-for="(item, i) in [1, 2, 3, 4, 5]"
+          :key="i"
+          class="
+            p-2
+            px-4
+            text-sm
+            hover:bg-gray-50
+            focus:bg-gray-100 focus:shadow-sm
+            text-gray-700
+            font-medium
+            rounded-md
+            outline-none
+          ">
           <span
             >Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
             aliquam dicta ipsam ullam?</span
