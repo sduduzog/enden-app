@@ -20,23 +20,28 @@
       <div class="flex-shrink-0 w-full max-w-screen-sm flex flex-col">
         <div class="flex-grow px-2 md:p-0 space-y-2">
           <div
-            class="rounded-md w-full p-2 pl-11 flex"
+            class="
+              rounded-md
+              w-full
+              p-2
+              pl-11
+              flex
+              items-start
+              hover:bg-gray-50
+            "
             :class="{ 'bg-gray-100': editing }">
-            <input
-              type="text"
-              placeholder="enden?"
-              @focus="editing = true"
-              @blur="editing = false"
-              class="flex-grow text-sm outline-none bg-transparent" />
+            <textarea-autosize
+              v-model="text"
+              class="flex-grow resize-none text-sm py-1 bg-fuchsia-300" />
             <button
-              class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
+              class="rounded-md p-1 bg-gray-300 disabled:opacity-40"
               :disabled="!editing">
               <x-icon class="h-5 text-white" />
             </button>
           </div>
           <div
             tabindex="0"
-            v-for="(item, i) in [1]"
+            v-for="(item, i) in [1, 2]"
             :key="i"
             class="
               lg:mx-0
@@ -68,9 +73,10 @@
               <minus-sm-icon v-else class="h-5" />
             </button>
             <span
-              :class="i % 2 === 0 ? '' : 'line-through'"
-              class="flex-grow py-1 font-medium text-sm">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              :class="i % 2 === 0 ? '' : 'line-through '"
+              class="flex-grow py-1 font-medium text-sm bg-fuchsia-400">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore
+              ab fugiat nesciunt.
             </span>
           </div>
         </div>
@@ -83,6 +89,7 @@
 import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
+import TextareaAutosize from '~/components/textarea-autosize.vue';
 import {
   CheckIcon,
   MinusSmIcon,
@@ -91,8 +98,9 @@ import {
 } from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { CheckIcon, MinusSmIcon, LogoutIcon, XIcon },
+  components: { TextareaAutosize, CheckIcon, MinusSmIcon, LogoutIcon, XIcon },
   setup() {
+    const text = ref();
     const editing = ref(false);
     const router = useRouter();
     const { auth } = useSupabase();
@@ -100,7 +108,7 @@ export default defineComponent({
       auth.signOut();
       router.push('/');
     }
-    return { signOut, editing };
+    return { text, signOut, editing };
   },
 });
 </script>

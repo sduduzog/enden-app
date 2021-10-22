@@ -1,1 +1,3 @@
-<template><div>privacy</div></template>
+<template>
+  <span>Hello</span>
+</template>
