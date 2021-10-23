@@ -14,18 +14,6 @@ export default defineComponent({
       type: String,
       default: undefined,
     },
-    onBlurred: {
-      type: Function,
-      default: undefined,
-    },
-    onFocussed: {
-      type: Function,
-      default: undefined,
-    },
-    focussed: {
-      type: Function,
-      default: undefined,
-    },
   },
   setup(props, { emit }) {
     const cTextarea = ref<HTMLTextAreaElement>();
@@ -41,8 +29,20 @@ export default defineComponent({
         const lineHeightString = window
           .getComputedStyle(cTextarea.value)
           .lineHeight.replace('px', '');
+        const paddingTopString = window.getComputedStyle(
+          cTextarea.value
+        ).paddingTop;
+        const paddingBottomString = window.getComputedStyle(
+          cTextarea.value
+        ).paddingBottom;
+        const paddingTop = Number(paddingTopString.replace('px', ''));
+        const paddingBottom = Number(paddingBottomString.replace('px', ''));
+        const paddingY = paddingTop + paddingBottom;
         const lineHeight = Number(lineHeightString);
-        const scrollHeight = cTextarea.value.scrollHeight;
+        const scrollHeight = cTextarea.value.scrollHeight - paddingY;
+        console.log('paddingY', paddingY);
+        console.log('lineHeight', lineHeight);
+        console.log('scrollHeight', scrollHeight);
         const newRows = scrollHeight / lineHeight;
         rows.value = newRows;
       }

@@ -27,20 +27,25 @@
               pl-11
               flex
               items-start
-              hover:bg-gray-50
+              hover:bg-gray-100/75
             "
-            :class="{ 'bg-gray-100': editing }">
-            <div class="pt-1 flex-grow">
-              <textarea-autosize
-                @focus="editing = true"
-                @blur="editing = false"
-                v-model="text"
-                placeholder="enden?"
-                class="flex-grow w-full resize-none text-sm bg-transparent" />
-            </div>
+            :class="{ 'bg-gray-100/75': editing }">
+            <textarea-autosize
+              @focus="editing = true"
+              v-model="text"
+              placeholder="enden?"
+              class="
+                flex-grow
+                w-full
+                resize-none
+                text-sm
+                py-1
+                bg-transparent
+              " />
             <button
               class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
-              :disabled="!editing">
+              :disabled="!editing"
+              @click="cancelEditing">
               <x-icon class="h-5 text-white" />
             </button>
           </div>
@@ -85,7 +90,7 @@
             </span>
           </div>
         </div>
-        <div class="bg-indigo-300 sticky bottom-0"></div>
+        <div class="bg-indigo-300 sticky bottom-0">cheese</div>
       </div>
     </div>
   </div>
@@ -113,14 +118,11 @@ export default defineComponent({
       auth.signOut();
       router.push('/');
     }
-    function editorFocussed() {
-      console.log('editor focussed');
-      editing.value = true;
+    function cancelEditing() {
+      text.value = '';
+      editing.value = false;
     }
-    function rando() {
-      console.log('random function');
-    }
-    return { text, signOut, editing, editorFocussed, rando };
+    return { text, editing, cancelEditing, signOut };
   },
 });
 </script>
