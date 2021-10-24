@@ -1,6 +1,6 @@
 <template>
   <textarea
-    class="outline-none"
+    class="outline-none font-medium"
     :value="modelValue"
     ref="cTextarea"
     :rows="rows"
@@ -40,9 +40,6 @@ export default defineComponent({
         const paddingY = paddingTop + paddingBottom;
         const lineHeight = Number(lineHeightString);
         const scrollHeight = cTextarea.value.scrollHeight - paddingY;
-        console.log('paddingY', paddingY);
-        console.log('lineHeight', lineHeight);
-        console.log('scrollHeight', scrollHeight);
         const newRows = scrollHeight / lineHeight;
         rows.value = newRows;
       }

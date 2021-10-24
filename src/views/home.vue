@@ -32,6 +32,8 @@
             :class="{ 'bg-gray-100/75': editing }">
             <textarea-autosize
               @focus="editing = true"
+              @blur="editing = false"
+              @keypress.enter.prevent="saveItem"
               v-model="text"
               placeholder="enden?"
               class="
@@ -49,48 +51,15 @@
               <x-icon class="h-5 text-white" />
             </button>
           </div>
-          <div
-            tabindex="0"
-            v-for="(item, i) in [1, 2]"
-            :key="i"
-            class="
-              lg:mx-0
-              p-2
-              hover:bg-gray-100
-              focus:bg-gray-100
-              focus-within:bg-gray-100
-              text-gray-700
-              rounded-md
-              outline-none
-              flex
-              items-start
-              space-x-2
-              group
-            ">
-            <button
-              class="
-                rounded-md
-                p-1
-                outline-none
-                md:opacity-0
-                group-focus:opacity-100
-                focus:opacity-100
-                group-hover:opacity-100
-                focus:bg-gray-200 focus:ring-2 focus:ring-gray-300
-                active:bg-gray-300 active:text-white
-              ">
-              <check-icon v-if="i % 2 === 0" class="h-5" />
-              <minus-sm-icon v-else class="h-5" />
+          <task-item v-for="(item, i) in []" :key="i" />
+        </div>
+        <div class="sticky bottom-0 md:rounded-t-md bg-white">
+          <div class="border flex justify-end p-2" v-if="editing">
+            <button class="rounded-md p-1 hover:bg-gray-200">
+              <x-icon class="h-5 text-gray-600" />
             </button>
-            <span
-              :class="i % 2 === 0 ? '' : 'line-through '"
-              class="flex-grow py-1 font-medium text-sm">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore
-              ab fugiat nesciunt.
-            </span>
           </div>
         </div>
-        <div class="bg-indigo-300 sticky bottom-0">cheese</div>
       </div>
     </div>
   </div>
@@ -100,6 +69,7 @@ import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
 import TextareaAutosize from '~/components/textarea-autosize.vue';
+import TaskItem from '~/components/task-item.vue';
 import {
   CheckIcon,
   MinusSmIcon,
@@ -108,12 +78,21 @@ import {
 } from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { TextareaAutosize, CheckIcon, MinusSmIcon, LogoutIcon, XIcon },
+  components: {
+    TextareaAutosize,
+    TaskItem,
+    CheckIcon,
+    MinusSmIcon,
+    LogoutIcon,
+    XIcon,
+  },
   setup() {
     const text = ref();
+    const pickedOutText = ref();
     const editing = ref(false);
     const router = useRouter();
     const { auth } = useSupabase();
+    function saveItem() {}
     function signOut() {
       auth.signOut();
       router.push('/');
@@ -122,7 +101,7 @@ export default defineComponent({
       text.value = '';
       editing.value = false;
     }
-    return { text, editing, cancelEditing, signOut };
+    return { text, pickedOutText, editing, saveItem, cancelEditing, signOut };
   },
 });
 </script>
