@@ -32,7 +32,6 @@
             :class="{ 'bg-gray-100/75': editing }">
             <textarea-autosize
               @focus="editing = true"
-              @blur="editing = false"
               @keypress.enter.prevent="saveItem"
               v-model="text"
               placeholder="enden?"
@@ -51,10 +50,10 @@
               <x-icon class="h-5 text-white" />
             </button>
           </div>
-          <task-item v-for="(item, i) in []" :key="i" />
+          <task-item :item="item" v-for="item in items" :key="item.id" />
         </div>
-        <div class="sticky bottom-0 md:rounded-t-md bg-white">
-          <div class="border flex justify-end p-2" v-if="editing">
+        <div class="sticky bottom-0">
+          <div class="border flex justify-end p-2" v-if="editing && false">
             <button class="rounded-md p-1 hover:bg-gray-200">
               <x-icon class="h-5 text-gray-600" />
             </button>
@@ -87,12 +86,21 @@ export default defineComponent({
     XIcon,
   },
   setup() {
-    const text = ref();
+    const text = ref<string>();
+    const items = ref<any[]>([]);
     const pickedOutText = ref();
     const editing = ref(false);
     const router = useRouter();
     const { auth } = useSupabase();
-    function saveItem() {}
+    function saveItem() {
+      const newItem = {
+        id: items.value.length + 1,
+        name: text.value,
+        complete: false,
+      };
+      items.value = [newItem, ...items.value];
+      text.value = '';
+    }
     function signOut() {
       auth.signOut();
       router.push('/');
@@ -101,7 +109,15 @@ export default defineComponent({
       text.value = '';
       editing.value = false;
     }
-    return { text, pickedOutText, editing, saveItem, cancelEditing, signOut };
+    return {
+      text,
+      items,
+      pickedOutText,
+      editing,
+      saveItem,
+      cancelEditing,
+      signOut,
+    };
   },
 });
 </script>

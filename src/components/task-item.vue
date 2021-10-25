@@ -42,23 +42,29 @@
       v-else
       :class="complete ? 'line-through' : ''"
       class="flex-grow py-1 font-medium text-sm">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempore ab
-      fugiat nesciunt.
+      {{ itemName }}
     </span>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { computed, defineComponent, ref, toRef } from 'vue';
 import { CheckIcon, MinusIcon } from '@heroicons/vue/solid';
 import TextareaAutosize from '~/components/textarea-autosize.vue';
 
 export default defineComponent({
   components: { CheckIcon, MinusIcon, TextareaAutosize },
-  setup() {
+  props: {
+    item: {
+      type: Object,
+      default: undefined,
+    },
+  },
+  setup(props) {
+    const itemName = ref(props.item?.name);
+    const complete = ref(props.item?.complete);
     const pickedOutText = ref();
     const editing = ref(false);
-    const complete = ref(true);
-    return { pickedOutText, editing, complete };
+    return { itemName, complete, pickedOutText, editing };
   },
 });
 </script>
