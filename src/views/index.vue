@@ -19,7 +19,6 @@
         md:min-h-full md:max-w-screen-md
         bg-white
         p-8
-        pt-16
         md:pt-20
         space-y-8
         md:space-y-8
@@ -49,6 +48,7 @@
           hover:opacity-80
           flex
           items-center
+          w-60
           p-2
           px-4
           space-x-3
@@ -60,11 +60,14 @@
         <twitter-logo class="w-6" />
         <span class="font-medium">Sign In with Twitter</span>
       </button>
-      <div class="border flex flex-wrap p-2 w-80">
-        <input type="text" class="border w-52" />
-        <input type="text" class="border w-52" />
-        <button class="bg-fuchsia-500 text-white">
-          <login-icon class="h-2" />
+      <div class="flex flex-wrap items-end w-80">
+        <input
+          type="text"
+          class="w-60 bg-gray-100 rounded-md p-2"
+          placeholder="Email e.g jon.conor@sky.net" />
+        <input type="text" class="w-60 mt-4 bg-gray-100 rounded-md p-2" />
+        <button class="ml-4 bg-fuchsia-500 text-white rounded-md p-2.5">
+          <arrow-right-icon class="h-5" />
         </button>
       </div>
     </div>
@@ -77,10 +80,10 @@ import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
 import { useSession } from '~/composables/session';
-import { LoginIcon } from '@heroicons/vue/solid';
+import { ArrowRightIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { twitterLogo, LoginIcon },
+  components: { twitterLogo, ArrowRightIcon },
   setup() {
     const router = useRouter();
     const auth = useSupabase().auth;
