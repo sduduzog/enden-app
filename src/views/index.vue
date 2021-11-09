@@ -60,6 +60,13 @@
         <twitter-logo class="w-6" />
         <span class="font-medium">Sign In with Twitter</span>
       </button>
+      <div class="border flex flex-wrap p-2 w-80">
+        <input type="text" class="border w-52" />
+        <input type="text" class="border w-52" />
+        <button class="bg-fuchsia-500 text-white">
+          <login-icon class="h-2" />
+        </button>
+      </div>
     </div>
     <div class="hidden flex-grow">food</div>
   </div>
@@ -70,9 +77,10 @@ import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
 import { useSession } from '~/composables/session';
+import { LoginIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
-  components: { twitterLogo },
+  components: { twitterLogo, LoginIcon },
   setup() {
     const router = useRouter();
     const auth = useSupabase().auth;
