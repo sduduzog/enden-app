@@ -1,50 +1,28 @@
 <template>
-  <div class="min-h-screen flex flex-col">
-    <div class="p-4 lg:p-6 lg:px-12 flex items-center justify-end space-x-2">
+  <div class="flex flex-col min-h-screen">
+    <div class="flex items-center justify-end p-4 space-x-2 lg:p-6 lg:px-12">
       <h1 class="flex-grow text-lg font-black"></h1>
       <button
         @click="signOut"
-        class="
-          rounded-md
-          p-1
-          font-bold
-          outline-none
-          focus:ring-2 focus:ring-gray-300
-          hover:bg-gray-200
-        ">
+        class="p-1 font-bold rounded-md outline-none focus:ring-2 focus:ring-gray-300 hover:bg-gray-200">
         <logout-icon class="h-5 text-gray-800" />
       </button>
     </div>
-    <div class="flex-grow flex justify-center">
-      <!-- <div class="hidden lg:block w-full max-w-md"></div> -->
-      <div class="flex-shrink-0 w-full max-w-screen-sm flex flex-col">
-        <div class="flex-grow px-2 md:p-0 space-y-2">
+    <div class="flex justify-center flex-grow">
+      <!-- <div class="hidden w-full max-w-md lg:block"></div> -->
+      <div class="flex flex-col flex-shrink-0 w-full max-w-screen-sm">
+        <div class="flex-grow px-2 space-y-2 md:p-0">
           <div
-            class="
-              rounded-md
-              w-full
-              p-2
-              pl-11
-              flex
-              items-start
-              hover:bg-gray-100/75
-            "
+            class="flex items-start w-full p-2 rounded-md pl-11 hover:bg-gray-100/75"
             :class="{ 'bg-gray-100/75': editing }">
             <textarea-autosize
               @focus="editing = true"
               @keypress.enter.prevent="saveItem"
               v-model="text"
               placeholder="enden?"
-              class="
-                flex-grow
-                w-full
-                resize-none
-                text-sm
-                py-1
-                bg-transparent
-              " />
+              class="flex-grow w-full py-1 text-sm bg-transparent resize-none" />
             <button
-              class="rounded-md p-1 bg-gray-300 disabled:opacity-0"
+              class="p-1 bg-gray-300 rounded-md disabled:opacity-0"
               :disabled="!editing"
               @click="cancelEditing">
               <x-icon class="h-5 text-white" />
@@ -53,8 +31,8 @@
           <task-item :item="item" v-for="item in items" :key="item.id" />
         </div>
         <div class="sticky bottom-0">
-          <div class="border flex justify-end p-2" v-if="editing && false">
-            <button class="rounded-md p-1 hover:bg-gray-200">
+          <div class="flex justify-end p-2 border" v-if="editing && false">
+            <button class="p-1 rounded-md hover:bg-gray-200">
               <x-icon class="h-5 text-gray-600" />
             </button>
           </div>

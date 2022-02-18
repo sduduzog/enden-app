@@ -41,30 +41,29 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, computed, watchEffect } from 'vue';
+import { defineComponent, computed, watchEffect, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useSupabase } from 'vue-supabase';
+import { useSupabaseAuth } from 'vue-supabase';
 import twitterLogo from '~/components/twitter-logo.vue';
-import { useSession } from '~/composables/session';
 import { ArrowRightIcon } from '@heroicons/vue/solid';
+import { useSession } from '~/composables/session';
 
 export default defineComponent({
   components: { twitterLogo, ArrowRightIcon },
   setup() {
     const router = useRouter();
-    const auth = useSupabase().auth;
-    const { session, loading } = useSession();
-    const loginDisabled = computed(() => typeof session.value === 'undefined');
+    const { loading, session } = useSession();
     watchEffect(() => {
-      if (!session.value) {
-        return;
+      if (session.value) {
+        router.push({ name: 'Home' });
       }
-      router.push({ name: 'Home' });
     });
+    const auth = useSupabaseAuth();
+    const loginDisabled = computed(() => typeof session.value === 'undefined');
     function signInWithTwitter() {
       auth.signIn({ provider: 'twitter' });
     }
-    return { session, loading, loginDisabled, signInWithTwitter };
+    return { loading, loginDisabled, signInWithTwitter };
   },
 });
 </script>
