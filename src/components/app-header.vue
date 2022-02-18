@@ -1,6 +1,6 @@
 <template>
   <header class="p-2 md:p-8">
-    <div class="flex justify-end p-4 bg-white rounded-xl">
+    <div class="flex justify-end p-4 bg-white shadow-md rounded-xl">
       <Menu as="div" class="relative inline-block text-left">
         <menu-button
           class="p-2 bg-opacity-0 rounded-md bg-rose-500 hover:bg-opacity-20 text-rose-500">

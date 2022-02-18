@@ -2,9 +2,6 @@
   <div
     class="min-h-screen to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br">
     <router-view />
-    <button class="p-4 m-8 text-xl font-bold bg-white rounded" @click="signOut">
-      Logout
-    </button>
   </div>
   <div
     v-if="!session"
