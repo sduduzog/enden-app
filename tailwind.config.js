@@ -6,6 +6,7 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       white: colors.white,
+      black: colors.black,
       gray: colors.slate,
       fuchsia: colors.fuchsia,
       rose: colors.rose,

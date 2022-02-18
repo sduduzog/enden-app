@@ -1,6 +1,7 @@
 <template>
   <div
     class="min-h-screen to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br">
+    <router-view />
     <button class="p-4 m-8 text-xl font-bold bg-white rounded" @click="signOut">
       Logout
     </button>
@@ -39,7 +40,7 @@
           placeholder="Password"
           class="p-2 mt-4 bg-gray-100 rounded-md w-60" />
         <button class="ml-4 bg-fuchsia-500 text-white rounded-md p-2.5">
-          <log-in :size="18" :stroke-width="3" />
+          <log-in-icon :size="18" :stroke-width="3" />
         </button>
       </div>
     </div>
@@ -55,7 +56,7 @@
 import TwitterLogo from '~/components/twitter-logo.vue';
 import { useOnAuthStateChange, useSupabaseAuth } from 'vue-supabase';
 import { useSession } from '~/composables/session';
-import { LogIn, Menu } from 'lucide-vue-next';
+import { LogIn as LogInIcon } from 'lucide-vue-next';
 const loading = false;
 const loginDisabled = false;
 const auth = useSupabaseAuth();
