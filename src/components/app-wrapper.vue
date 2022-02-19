@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full p-1 bg-black/50 md:p-8">
+  <header class="w-full p-1 md:p-8">
     <div
       class="flex justify-end p-4 bg-white rounded-md shadow-md md:rounded-xl">
       <Menu as="div" class="relative inline-block text-left">
@@ -33,16 +33,36 @@
       </Menu>
     </div>
   </header>
-  <main
-    class="flex justify-center p-1 overflow-auto md:p-8 md:space-x-8 bg-white/30">
-    <div class="self-start hidden w-full max-w-sm p-4 bg-white md:block"></div>
-    <div class="flex-shrink-[.7] w-full max-w-screen-md p-4 bg-white"></div>
+  <main class="flex justify-center p-1 md:overflow-hidden md:p-8 md:space-x-8">
+    <div
+      class="self-start hidden w-full max-w-sm p-4 bg-white md:blocks rounded-xl"></div>
+    <div
+      class="flex flex-col flex-shrink-[.7] w-full max-w-screen-md bg-white rounded-md md:rounded-xl md:overflow-auto">
+      <div class="flex-grow space-y-2 md:p-4">
+        <p class="" v-for="i in array" :key="i">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis est
+          deleniti fuga? Esse sequi sunt vero facilis aliquam. Esse possimus
+          recusandae quo dignissimos quod alias, maiores provident assumenda
+          corporis dolorem.
+        </p>
+        <div class="p-4 rounded-md bg-rose-200" v-for="i in array2" :key="i">
+          <button class="p-2 bg-indigo-500 rounded-md">
+            <grip-vertical-icon :size="16" :stroke-width="3" />
+          </button>
+        </div>
+      </div>
+      <div
+        class="sticky p-4 bg-white border rounded-md rounded-t-none bottom-1 md:rounded-xl md:bottom-0"></div>
+    </div>
   </main>
 </template>
 <script lang="ts" setup>
 import { useSupabaseAuth } from 'vue-supabase';
 import { MenuButton, Menu, MenuItems, MenuItem } from '@headlessui/vue';
-import { Menu as MenuIcon } from 'lucide-vue-next';
+import {
+  Menu as MenuIcon,
+  GripVertical as GripVerticalIcon,
+} from 'lucide-vue-next';
 
 const auth = useSupabaseAuth();
 function signOut() {
@@ -52,4 +72,5 @@ function rangeGenerator(start: number, end: number) {
   return Array.from({ length: end - start }, (_, i) => i + start);
 }
 const array = rangeGenerator(0, 0);
+const array2 = rangeGenerator(0, 1);
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid min-h-screen grid-rows-[auto_1fr] to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br overflow-hidden max-h-screen">
+    class="grid min-h-screen grid-rows-[auto_1fr] to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br md:overflow-hidden max-h-screen">
     <router-view />
   </div>
   <div
@@ -63,8 +63,5 @@ useOnAuthStateChange((_, _session) => {
 });
 function signInWithTwitter() {
   auth.signIn({ provider: 'twitter' });
-}
-function signOut() {
-  auth.signOut();
 }
 </script>

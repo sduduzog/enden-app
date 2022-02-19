@@ -6,6 +6,5 @@
   <!-- </section> -->
 </template>
 <script lang="ts" setup>
-import AppHeader from '~/components/app-header.vue';
 import AppWrapper from '~/components/app-wrapper.vue';
 </script>
