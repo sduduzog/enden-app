@@ -39,17 +39,7 @@
     <div
       class="flex flex-col flex-shrink-[.7] w-full max-w-screen-md bg-white rounded-md md:rounded-xl md:overflow-auto">
       <div class="flex-grow space-y-2 md:p-4">
-        <p class="" v-for="i in array" :key="i">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis est
-          deleniti fuga? Esse sequi sunt vero facilis aliquam. Esse possimus
-          recusandae quo dignissimos quod alias, maiores provident assumenda
-          corporis dolorem.
-        </p>
-        <div class="p-4 rounded-md bg-rose-200" v-for="i in array2" :key="i">
-          <button class="p-2 bg-indigo-500 rounded-md">
-            <grip-vertical-icon :size="16" :stroke-width="3" />
-          </button>
-        </div>
+        <task v-for="i in array2" :key="i" />
       </div>
       <div
         class="sticky p-4 bg-white border rounded-md rounded-t-none bottom-1 md:rounded-xl md:bottom-0"></div>
@@ -59,10 +49,8 @@
 <script lang="ts" setup>
 import { useSupabaseAuth } from 'vue-supabase';
 import { MenuButton, Menu, MenuItems, MenuItem } from '@headlessui/vue';
-import {
-  Menu as MenuIcon,
-  GripVertical as GripVerticalIcon,
-} from 'lucide-vue-next';
+import { Menu as MenuIcon } from 'lucide-vue-next';
+import Task from '~/components/task.vue';
 
 const auth = useSupabaseAuth();
 function signOut() {
@@ -72,5 +60,5 @@ function rangeGenerator(start: number, end: number) {
   return Array.from({ length: end - start }, (_, i) => i + start);
 }
 const array = rangeGenerator(0, 0);
-const array2 = rangeGenerator(0, 1);
+const array2 = rangeGenerator(0, 2);
 </script>
