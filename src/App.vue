@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br">
+    class="grid min-h-screen grid-rows-[auto_1fr] to-indigo-400 from-fuchsia-400 via-rose-400 bg-gradient-to-br overflow-hidden max-h-screen">
     <router-view />
   </div>
   <div

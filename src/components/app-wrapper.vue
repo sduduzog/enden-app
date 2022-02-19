@@ -1,5 +1,5 @@
 <template>
-  <header class="p-1 md:p-8">
+  <header class="w-full p-1 bg-black/50 md:p-8">
     <div
       class="flex justify-end p-4 bg-white rounded-md shadow-md md:rounded-xl">
       <Menu as="div" class="relative inline-block text-left">
@@ -33,6 +33,11 @@
       </Menu>
     </div>
   </header>
+  <main
+    class="flex justify-center p-1 overflow-auto md:p-8 md:space-x-8 bg-white/30">
+    <div class="self-start hidden w-full max-w-sm p-4 bg-white md:block"></div>
+    <div class="flex-shrink-[.7] w-full max-w-screen-md p-4 bg-white"></div>
+  </main>
 </template>
 <script lang="ts" setup>
 import { useSupabaseAuth } from 'vue-supabase';
@@ -43,4 +48,8 @@ const auth = useSupabaseAuth();
 function signOut() {
   auth.signOut();
 }
+function rangeGenerator(start: number, end: number) {
+  return Array.from({ length: end - start }, (_, i) => i + start);
+}
+const array = rangeGenerator(0, 0);
 </script>
