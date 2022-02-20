@@ -6,7 +6,8 @@
   <div
     v-if="!session"
     class="fixed inset-0 z-50 flex flex-row-reverse backdrop-blur-lg">
-    <div class="w-full p-8 space-y-8 bg-white sm:max-w-screen-sm">
+    <div
+      class="w-full p-8 space-y-8 bg-white border-l shadow-md sm:max-w-screen-sm">
       <h1 class="py-8 text-3xl font-black text-fuchsia-600">enden?</h1>
       <h1
         class="py-2 text-6xl font-black text-transparent bg-gradient-to-r bg-clip-text from-fuchsia-400 to-indigo-400 via-rose-400">
@@ -27,7 +28,7 @@
         <twitter-logo class="w-6" />
         <span class="font-medium">Sign In with Twitter</span>
       </button>
-      <div class="flex flex-wrap items-end w-80">
+      <!-- <div class="flex flex-wrap items-end w-80">
         <input
           type="text"
           class="p-2 bg-gray-100 rounded-md w-60"
@@ -39,7 +40,7 @@
         <button class="ml-4 bg-fuchsia-500 text-white rounded-md p-2.5">
           <log-in-icon :size="18" :stroke-width="3" />
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
