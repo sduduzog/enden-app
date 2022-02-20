@@ -1,7 +1,7 @@
 <template>
   <header class="w-full p-1 md:p-8">
     <div
-      class="flex justify-end p-4 bg-white rounded-md shadow-md md:rounded-xl">
+      class="flex justify-end p-2 bg-white rounded-md shadow-md md:p-4 md:rounded-xl">
       <Menu as="div" class="relative inline-block text-left">
         <menu-button
           class="p-2 bg-opacity-0 rounded-md bg-rose-500 hover:bg-opacity-20 text-rose-500">
