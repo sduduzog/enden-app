@@ -34,31 +34,16 @@
     </div>
   </header>
   <main class="flex justify-center p-1 md:overflow-hidden md:p-8 md:space-x-8">
-    <div
-      class="self-start hidden w-full max-w-sm p-4 bg-white md:blocks rounded-xl"></div>
-    <div
-      class="flex flex-col flex-shrink-[.7] w-full max-w-screen-md bg-white rounded-md md:rounded-xl md:overflow-auto">
-      <div class="flex-grow space-y-2 md:p-4">
-        <task v-for="i in array2" :key="i" />
-      </div>
-      <div
-        class="sticky p-4 bg-white border rounded-md rounded-t-none bottom-1 md:rounded-xl md:bottom-0"></div>
-    </div>
+    <slot></slot>
   </main>
 </template>
 <script lang="ts" setup>
 import { useSupabaseAuth } from 'vue-supabase';
 import { MenuButton, Menu, MenuItems, MenuItem } from '@headlessui/vue';
 import { Menu as MenuIcon } from 'lucide-vue-next';
-import Task from '~/components/task.vue';
 
 const auth = useSupabaseAuth();
 function signOut() {
   auth.signOut();
 }
-function rangeGenerator(start: number, end: number) {
-  return Array.from({ length: end - start }, (_, i) => i + start);
-}
-const array = rangeGenerator(0, 0);
-const array2 = rangeGenerator(0, 2);
 </script>

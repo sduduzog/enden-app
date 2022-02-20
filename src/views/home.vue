@@ -46,7 +46,6 @@ import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useSupabase } from 'vue-supabase';
 import TextareaAutosize from '~/components/textarea-autosize.vue';
-import TaskItem from '~/components/task-item.vue';
 import {
   CheckIcon,
   MinusSmIcon,
@@ -57,7 +56,6 @@ import {
 export default defineComponent({
   components: {
     TextareaAutosize,
-    TaskItem,
     CheckIcon,
     MinusSmIcon,
     LogoutIcon,

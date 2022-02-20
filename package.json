@@ -11,7 +11,8 @@
     "lucide-vue-next": "^0.16.29",
     "vue": "^3.2.31",
     "vue-router": "4.0.12",
-    "vue-supabase": "^2.2.4"
+    "vue-supabase": "^2.2.4",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "1.9.4",

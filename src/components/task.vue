@@ -1,8 +1,10 @@
 <template>
-  <div class="flex items-start p-1 py-2 space-x-1 rounded-md hover:bg-gray-100">
-    <button class="p-1.5 bg-indigo-500x rounded-md opacity-0">
+  <div
+    class="flex items-start p-1 py-2 space-x-1 rounded-md group hover:bg-gray-100">
+    <div
+      class="p-1.5 bg-indigo-500x rounded-md md:opacity-0 group-hover:opacity-100 text-gray-900 text-opacity-50 cursor-grab active:cursor-grabbing">
       <grip-vertical-icon :size="16" :stroke-width="3" />
-    </button>
+    </div>
     <button
       class="p-1.5 bg-indigo-400x text-gray-900 text-opacity-50 rounded-md"
       @click="toggleComplete">
