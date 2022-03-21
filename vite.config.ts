@@ -7,9 +7,11 @@ export default defineConfig({
   plugins: [
     vue(),
     pwa({
+      registerType: 'autoUpdate',
       includeManifestIcons: false,
       manifest: {
         theme_color: '#FF00FF',
+        icons: [],
       },
     }),
   ],
