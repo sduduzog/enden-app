@@ -37,7 +37,7 @@
       <input
         type="number"
         class="w-12 py-4 pr-2 outline-none"
-        placeholder="0.00000" />
+        placeholder="0.00" />
       <button class="p-2 rounded-md">
         <x-icon :size="16" :stroke-width="3" />
       </button>
